@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazer PIX</title>
+    <style>
+        /* Estilos copiados do cadastro.html para consistência */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            margin-bottom: 15px; /* Espaço para o link de voltar */
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff5722; /* Laranja PIX */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e04e1c;
+        }
+        
+        .saldo-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Transferência PIX 🚀</h1>
+    
+    <div class="saldo-info">
+        Saldo Atual: **R$ {{ "%.2f"|format(dados.saldo|default(0)) }}**
+    </div>
+
+    <form action="{{ url_for('fazer_pix') }}" method="POST">
+        <input type="text" name="chave_destino" placeholder="Chave PIX de Destino" required>
+        <input type="number" name="valor" step="0.01" min="0.01" placeholder="Valor (Ex: 100.00)" required>
+        <button type="submit">Confirmar PIX</button>
+    </form>
+    
+    <a href="{{ url_for('menu_principal') }}" style="color: #1a73e8; text-decoration: none;">
+        &#9664; Voltar ao Menu Principal
+    </a>
+</body>
+</html>

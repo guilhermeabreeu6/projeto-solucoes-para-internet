@@ -1,0 +1,26 @@
+{
+  "002": {
+    "nome": "Guilherme Abreu",
+    "agencia": "001",
+    "conta": "002",
+    "senha": "003",
+    "saldo": 1000.0,
+    "limite": 5000.0,
+    "chave_pix": null,
+    "extrato": [
+      "05/11/2025 15:39:41 - Saldo Inicial +R$ 1000.00"
+    ]
+  },
+  "321": {
+    "nome": "julia carvalho",
+    "agencia": "123",
+    "conta": "321",
+    "senha": "444",
+    "saldo": 1000.0,
+    "limite": 5000.0,
+    "chave_pix": null,
+    "extrato": [
+      "05/11/2025 15:40:24 - Saldo Inicial +R$ 1000.00"
+    ]
+  }
+}

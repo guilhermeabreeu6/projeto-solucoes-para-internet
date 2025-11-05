@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <style>
+        /* CSS Básico e Limpo (o mesmo do cadastro.html) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+        h1 { color: #1a73e8; margin-bottom: 20px; text-align: center; }
+        .info-box p {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #1a73e8;
+            margin-bottom: 10px;
+        }
+        .limite-info { color: #dc3545; font-weight: bold; }
+        
+        /* Estilos do formulário de PIX */
+        form { margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px; }
+        input { width: 100%; padding: 10px; margin: 8px 0; border-radius: 5px; border: 1px solid #ccc; }
+        button { width: 100%; padding: 10px; background-color: #1a73e8; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👤 Meu Perfil</h1>
+        
+        <div class="info-box">
+            <p><strong>Nome:</strong> {{ dados.nome }}</p>
+            <p><strong>Agência:</strong> {{ dados.agencia }}</p>
+            <p><strong>Conta:</strong> {{ dados.conta }}</p>
+            <p><strong>Saldo:</strong> R$ {{ "%.2f"|format(dados.saldo|default(0)) }}</p>
+            <p class="limite-info"><strong>Limite Disp.:</strong> R$ {{ "%.2f"|format(dados.limite_disponivel|default(0)) }}</p>
+        </div>
+
+        <div style="margin-top: 25px; border-top: 1px solid #ddd; padding-top: 15px;">
+            <h3>Chave PIX Atual</h3>
+            <p style="word-wrap: break-word;">{{ dados.chave_pix_atual }}</p>
+        </div>
+
+        <form action="{{ url_for('gerenciar_pix') }}" method="POST">
+            <h3>Cadastrar/Atualizar Chave PIX</h3>
+            <input type="text" name="nova_chave" placeholder="Nova Chave PIX" required>
+            <button type="submit">Atualizar Chave</button>
+        </form>
+        
+        <div style="margin-top: 20px; text-align: center;">
+             <a href="{{ url_for('menu_principal') }}" style="color: #1a73e8; text-decoration: none;">&#9664; Voltar ao Menu</a>
+        </div>
+    </div>
+</body>
+</html>

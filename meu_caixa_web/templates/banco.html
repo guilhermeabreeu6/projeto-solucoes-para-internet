@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções Bancárias</title>
+    <style>
+        /* CSS Básico e Limpo (o mesmo do cadastro.html) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h1 { color: #1a73e8; margin-bottom: 25px; }
+        .action-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #4CAF50; /* Verde */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .action-button:hover { background-color: #45a049; }
+        .pix-btn { background-color: #ff5722; }
+        .pix-btn:hover { background-color: #e04e1c; }
+        .extrato-btn { background-color: #17a2b8; }
+        .extrato-btn:hover { background-color: #138496; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Serviços Bancários 🏦</h1>
+        
+        <a href="{{ url_for('pix_page') }}" class="action-button pix-btn">Fazer PIX</a>
+        
+        <a href="{{ url_for('menu_principal') }}#deposito" class="action-button" style="background-color: #28a745;">Depositar</a>
+        <a href="{{ url_for('menu_principal') }}#saque" class="action-button" style="background-color: #ffc107;">Sacar</a>
+        
+        <a href="{{ url_for('perfil') }}" class="action-button" style="background-color: #007bff;">Consultar Limite/Perfil</a>
+        
+        <a href="{{ url_for('mostrar_extrato') }}" class="action-button extrato-btn">Extrato</a>
+        
+        <div style="margin-top: 20px;">
+             <a href="{{ url_for('menu_principal') }}" style="color: #1a73e8; text-decoration: none;">&#9664; Voltar ao Menu Principal</a>
+        </div>
+    </div>
+</body>
+</html>

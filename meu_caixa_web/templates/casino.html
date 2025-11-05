@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino - Lançamento de Dados</title>
+    <style>
+        /* Reutilizando estilos do seu projeto */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        h1 {
+            color: #4CAF50; /* Cor verde para o tema Casino */
+            margin-bottom: 20px;
+        }
+        
+        .saldo-info {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+            border-left: 5px solid #4CAF50;
+        }
+        .saldo-info strong {
+            display: block;
+            font-size: 1.4em;
+            color: #4CAF50;
+            margin: 5px 0;
+        }
+
+        form {
+            background: white;
+            padding: 30px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 300px;
+            text-align: center;
+        }
+
+        input[type="number"] {
+            width: 80%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Estilo específico para botões de rádio */
+        input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎲 Cassino - Jogo do Dado</h1>
+    
+    <div class="saldo-info">
+        <p>Seu Saldo Disponível</p>
+        <strong>R$ {{ "%.2f"|format(saldo|default(0)) }}</strong>
+    </div>
+
+    <form method="POST" action="{{ url_for('apostar') }}">
+        <h2>Aposte em Par ou Ímpar</h2>
+        
+        <label for="aposta">Valor da Aposta (R$):</label>
+        <input type="number" id="aposta" name="aposta" min="1.00" step="0.01" placeholder="Ex: 10.00" required>
+        <br>
+
+        <label>Sua Escolha:</label>
+        <div style="display: flex; justify-content: space-around; margin-top: 10px;">
+            <div>
+                <input type="radio" id="par" name="escolha" value="par" required>
+                <label for="par" style="display: inline;">Par (2x, 4x, 6x)</label>
+            </div>
+            <div>
+                <input type="radio" id="ímpar" name="escolha" value="ímpar">
+                <label for="ímpar" style="display: inline;">Ímpar (1x, 3x, 5x)</label>
+            </div>
+        </div>
+        <br>
+
+        <button type="submit">Lançar Dado e Apostar</button>
+    </form>
+
+    <div style="margin-top: 20px;">
+        <a href="{{ url_for('menu_principal') }}" style="color: #1a73e8; text-decoration: none;">Voltar para o Menu Principal</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal | {{ dados.nome }}</title>
+    <style>
+        /* CSS Base Simplificado */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 { color: #1a73e8; margin-bottom: 5px; }
+        h2 { color: #5f6368; font-weight: 300; margin-bottom: 20px; }
+        .saldo-box {
+            background-color: #e6f7ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .saldo-box p { margin: 0; font-size: 1.2em; font-weight: bold; }
+
+        /* Botões de Navegação Principal */
+        .nav-button {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            margin: 15px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.5em;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s;
+        }
+        .nav-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        .banco-btn { background-color: #28a745; } /* Verde para Banco */
+        .cassino-btn { background-color: #6f42c1; } /* Roxo para Cassino */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo(a), {{ dados.nome }}!</h1>
+        <h2>Menu Principal de Serviços</h2>
+
+        <div class="saldo-box">
+            <p>💰 Saldo Atual: R$ {{ "%.2f"|format(dados.saldo|default(0)) }}</p>
+        </div>
+
+        <a href="{{ url_for('acessar_banco') }}" class="nav-button banco-btn">
+            🏦 Acessar Banco
+        </a>
+
+        <a href="{{ url_for('acessar_cassino') }}" class="nav-button cassino-btn">
+            🎲 Acessar Cassino
+        </a>
+        
+        <a href="{{ url_for('perfil') }}" style="display: block; margin-top: 15px; color: #1a73e8;">
+            👤 Ver Meu Perfil (Chave PIX e Dados)
+        </a>
+        
+        <div style="margin-top: 30px;">
+            <a href="{{ url_for('logout') }}" style="color: #dc3545; text-decoration: none;">🔴 Sair do Sistema (Logout)</a>
+        </div>
+    </div>
+</body>
+</html>

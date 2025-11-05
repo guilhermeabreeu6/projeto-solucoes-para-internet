@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-Vindo ao Sistema de Caixa Eletrônico e Cassino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        h1 {
+            color: #1a73e8;
+            font-size: 2.5em;
+        }
+        p {
+            color: #555;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .btn-entrar {
+            background-color: #4CAF50; /* Verde para destacar o botão de entrada */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none; /* Remover sublinhado do link */
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-entrar:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>💰 Bem-Vindo à Casa da Moeda 💰</h1>
+    <p>Simulador de Caixa Eletrônico e Cassino de Diversão</p>
+
+    <a href="{{ url_for('login') }}" class="btn-entrar">
+        Entrar no Sistema
+    </a>
+
+    <div style="margin-top: 20px;">
+        <a href="{{ url_for('cadastro') }}" style="color: #1a73e8; text-decoration: none;">
+            🆕 Novo por aqui? Cadastre-se!
+        </a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da Operação</title>
+    <style>
+        /* Reutilizando estilos base para consistência */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+
+        h1 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+        }
+        
+        /* Estilo para a mensagem principal */
+        .mensagem {
+            font-size: 1.1em;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            /* Cor será definida pelo Python, mas aqui definimos um padrão */
+            background-color: #e6f7ff; 
+            border: 1px solid #b3d9ff;
+        }
+        
+        /* Estilo para o link de navegação */
+        .next-step {
+            display: inline-block;
+            background-color: #4CAF50; /* Verde para ação */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+        .next-step:hover {
+            background-color: #45a049;
+        }
+        
+        /* Para o detalhe de saldo (opcional) */
+        .detalhe {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Processo Concluído</h1>
+        
+        <p class="mensagem">{{ resultado }}</p>
+        
+        {% if detalhe_saldo %}
+            <p class="detalhe">{{ detalhe_saldo }}</p>
+        {% endif %}
+
+        {% if link %}
+            <a href="{{ link }}" class="next-step">
+                {% if link_text %}{{ link_text }}{% else %}Continuar{% endif %}
+            </a>
+        {% else %}
+             <a href="{{ url_for('menu_principal') }}" class="next-step" style="background-color: #1a73e8;">Voltar ao Menu Principal</a>
+        {% endif %}
+        
+    </div>
+</body>
+</html>
