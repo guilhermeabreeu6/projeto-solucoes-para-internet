@@ -22,5 +22,21 @@
     "extrato": [
       "05/11/2025 15:40:24 - Saldo Inicial +R$ 1000.00"
     ]
+  },
+  "555": {
+    "nome": "Guilherme Abreu",
+    "agencia": "444",
+    "conta": "555",
+    "senha": "777",
+    "saldo": 1051.05,
+    "limite": 5000.0,
+    "chave_pix": "07851125103",
+    "extrato": [
+      "06/11/2025 20:33:38 - Saldo Inicial +R$ 1000.00",
+      "06/11/2025 20:34:42 - Casino (Ganho) +R$ 300.00",
+      "06/11/2025 22:01:01 - Casino (Perda) -R$ 50.00",
+      "06/11/2025 22:01:17 - Casino (Perda) -R$ 200.00",
+      "06/11/2025 22:01:26 - Casino (Ganho) +R$ 1.05"
+    ]
   }
 }

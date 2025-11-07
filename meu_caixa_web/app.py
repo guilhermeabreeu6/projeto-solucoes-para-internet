@@ -133,13 +133,31 @@ def perfil():
     dados = caixa.get_dados_cliente()
     return render_template("perfil.html", dados=dados)
 
+# ----------------------------------------------------
+# ROTAS DE OPERAÇÕES BANCÁRIAS
+# ----------------------------------------------------
+
+@app.route("/deposito")
+@login_required
+def pagina_deposito():
+    """Página para realizar depósitos"""
+    dados = caixa.get_dados_cliente()
+    return render_template("deposito.html", dados=dados)
+
+@app.route("/saque")
+@login_required
+def pagina_saque():
+    """Página para realizar saques"""
+    dados = caixa.get_dados_cliente()
+    return render_template("saque.html", dados=dados)
+
 @app.route("/depositar", methods=["POST"])
 @login_required
 def depositar():
     valor = request.form["valor"] # Recebe como string, a validação é feita na classe
     resultado = caixa.depositar(valor)
-    # Redireciona de volta para o dashboard para ver o saldo atualizado
-    return render_template("resultado.html", resultado=resultado, link_text="Voltar ao Menu Principal", link=url_for('menu_principal'))
+    # Redireciona de volta para o banco após depósito
+    return render_template("resultado.html", resultado=resultado, link_text="Voltar ao Banco", link=url_for('acessar_banco'))
 
 
 @app.route("/sacar", methods=["POST"])
@@ -147,7 +165,7 @@ def depositar():
 def sacar():
     valor = request.form["valor"]
     resultado = caixa.sacar(valor)
-    return render_template("resultado.html", resultado=resultado, link_text="Voltar ao Menu Principal", link=url_for('menu_principal'))
+    return render_template("resultado.html", resultado=resultado, link_text="Voltar ao Banco", link=url_for('acessar_banco'))
 
 
 @app.route("/extrato")
@@ -178,8 +196,8 @@ def fazer_pix():
     # Retorna para o template de resultado (sucesso ou erro)
     return render_template("resultado.html", 
                            resultado=resultado, 
-                           link_text="Voltar ao Menu Principal", 
-                           link=url_for('menu_principal'))
+                           link_text="Voltar ao Banco", 
+                           link=url_for('acessar_banco'))
 
 # Rota para cadastrar/consultar a chave PIX
 @app.route("/gerenciar_pix", methods=["GET", "POST"])
@@ -191,15 +209,15 @@ def gerenciar_pix():
         
         return render_template("resultado.html", 
                                resultado=resultado, 
-                               link_text="Voltar ao Menu Principal", 
-                               link=url_for('menu_principal'))
+                               link_text="Voltar ao Perfil", 
+                               link=url_for('perfil'))
         
     # Se for GET, apenas exibe a chave atual
     resultado = caixa.gerenciar_pix(None) # Passa None para a função consultar
     return render_template("resultado.html", 
                            resultado=resultado, 
-                           link_text="Voltar ao Menu Principal", 
-                           link=url_for('menu_principal'))
+                           link_text="Voltar ao Perfil", 
+                           link=url_for('perfil'))
 
 
 # ----------------------------------------------------

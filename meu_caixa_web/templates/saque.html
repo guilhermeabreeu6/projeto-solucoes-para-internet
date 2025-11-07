@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saque - Caixa Eletrônico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            margin: 0;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 400px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #ffc107;
+            margin-bottom: 20px;
+        }
+        
+        .saldo-info {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ffc107;
+        }
+        
+        .limite-info {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background-color: #e0a800;
+        }
+        
+        .voltar {
+            margin-top: 20px;
+        }
+        
+        .voltar a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        
+        .voltar a:hover {
+            text-decoration: underline;
+        }
+        
+        .aviso {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💳 Saque</h1>
+        
+        <div class="saldo-info">
+            <strong>Saldo Atual:</strong> R$ {{ "%.2f"|format(dados.saldo|default(0)) }}<br>
+            <div class="limite-info">
+                <strong>Limite Disponível:</strong> R$ {{ "%.2f"|format(dados.limite_disponivel|default(0)) }}
+            </div>
+            <strong>Cliente:</strong> {{ dados.nome }}
+        </div>
+        
+        <div class="aviso">
+            ⚠️ Você pode sacar até o valor do seu saldo + limite disponível
+        </div>
+        
+        <form action="{{ url_for('sacar') }}" method="POST">
+            <label for="valor">Valor do Saque:</label>
+            <input type="number" name="valor" id="valor" step="0.01" min="0.01" placeholder="Ex: 50.00" required>
+            
+            <button type="submit">💳 Sacar</button>
+        </form>
+        
+        <div class="voltar">
+            <a href="{{ url_for('acessar_banco') }}">⬅️ Voltar ao Banco</a>
+        </div>
+    </div>
+</body>
+</html>
